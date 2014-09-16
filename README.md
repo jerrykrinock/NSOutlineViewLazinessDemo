@@ -11,4 +11,4 @@ Instructions:
 
 Result:
 
-Several seconds of beachballing while 1000 lines print to console.  Only 10 items are visible in the window.
+Several seconds of beachballing while 1000 lines print to console.  Ultimately, only about 10 items are visible in the window.
