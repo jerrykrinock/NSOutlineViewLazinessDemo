@@ -1,7 +1,7 @@
 NSOutlineViewLazinessDemo
 =========================
 
-Demonstrates how NSOutlineView is not lazy.
+Demonstrates how NSOutlineView is not lazy when expanding items.
 
 Instructions:
 
