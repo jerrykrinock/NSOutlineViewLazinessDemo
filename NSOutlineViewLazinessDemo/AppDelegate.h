@@ -2,7 +2,12 @@
 
 @interface AppDelegate : NSObject <
 NSApplicationDelegate,
-NSOutlineViewDataSource>
+NSOutlineViewDataSource> {
+    IBOutlet NSTextField* childRequestsField ;
+    IBOutlet NSTextField* columnRequestsField ;
+}
 
+- (IBAction)refresh:(id)sender ;
+- (IBAction)reset:(id)sender ;
 @end
 

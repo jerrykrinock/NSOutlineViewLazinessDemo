@@ -1,9 +1,26 @@
 #import "AppDelegate.h"
 
+static NSInteger countChildRequests = 0 ;
+static NSInteger countColumnRequests = 0 ;
 
 @implementation AppDelegate
 
-#define NUMBER_OF_ITEMS 1000
+#define NUMBER_OF_ITEMS 18000
+#define CHILD_FETCH_MICROSECONDS 0
+#define DO_LOG_CHILD_REQUESTS NO
+
+- (IBAction)refresh:(id)sender {
+    [childRequestsField setStringValue:[NSString stringWithFormat:@"%ld", (long)countChildRequests]] ;
+    [columnRequestsField setStringValue:[NSString stringWithFormat:@"%ld", (long)countColumnRequests]] ;
+}
+
+- (IBAction)reset:(id)sender {
+    countChildRequests = 0 ;
+    countColumnRequests = 0 ;
+    [self refresh:self] ;
+}
+
+
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView
   numberOfChildrenOfItem:(id)item {
@@ -62,11 +79,15 @@
     }
     
     id child = [[NSNumber alloc] initWithInteger:value] ;
-    /*SSYDBL*/ NSLog(@"Child %04ld requested",
-                     (long)index) ;
+    if (DO_LOG_CHILD_REQUESTS) {
+        NSLog(@"Child %04ld requested",
+              (long)index) ;
+    }
 
     // Dramatize the delay
-    usleep(3000) ;
+    usleep(CHILD_FETCH_MICROSECONDS) ;
+    
+    countChildRequests++ ;
 
     return child ;
 }
@@ -90,6 +111,9 @@
                   [(NSNumber*)item integerValue]] ;
     }
 
+    countColumnRequests++ ;
+    
+    /*SSYDBL*/ NSLog(@"%@ = %@", [tableColumn identifier], object) ;
     return object ;
 }
 
