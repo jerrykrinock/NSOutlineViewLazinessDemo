@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@interface ActualItem : NSObject
+@interface ModelItem : NSObject
 
 @property (retain) NSString* name ;
 @property (assign) NSInteger numberOfChildren ;
 
-+ (ActualItem*)actualItemWithParent:(ActualItem*)parent
++ (ModelItem*)modelItemWithParent:(ModelItem*)parent
                             atIndex:(NSInteger)index ;
 
 

@@ -3,18 +3,41 @@
 @interface AppDelegate : NSObject <
 NSApplicationDelegate,
 NSOutlineViewDataSource> {
-    NSInteger countLazyChildRequests ;
-    NSInteger countLazyColumnRequests ;
+    NSInteger dumbChildCount ;
+    NSInteger dumbColumnCount ;
+    NSInteger dumbNumberCount ;
+    NSInteger dumbExpandableCount ;
+    NSInteger lazyChildCount ;
+    NSInteger lazyColumnCount ;
+    NSInteger lazyNumberCount ;
+    NSInteger lazyExpandableCount ;
+    
+    IBOutlet NSOutlineView* dumbOutlineView ;
+    IBOutlet NSTextField* dumbChildField ;
+    IBOutlet NSTextField* dumbColumnField ;
+    IBOutlet NSTextField* dumbNumberField ;
+    IBOutlet NSTextField* dumbExpandableField ;
 
-    IBOutlet NSTextField* childRequestsField ;
-    IBOutlet NSTextField* columnRequestsField ;    
+    IBOutlet NSOutlineView* lazyOutlineView ;
+    IBOutlet NSTextField* lazyChildField ;
+    IBOutlet NSTextField* lazyColumnField ;
+    IBOutlet NSTextField* lazyNumberField ;
+    IBOutlet NSTextField* lazyExpandableField ;
 }
 
-- (IBAction)refresh:(id)sender ;
-- (IBAction)reset:(id)sender ;
+- (IBAction)resetDumb:(id)sender ;
+- (IBAction)reloadDumb:(id)sender ;
+- (void)incrementDumbChild ;
+- (void)incrementDumbColumn ;
+- (void)incrementDumbNumber ;
+- (void)incrementDumbExpandable ;
 
-- (void)incrementLazyChildRequests ;
-- (void)incrementLazyColumnRequests ;
+- (IBAction)resetLazy:(id)sender ;
+- (IBAction)reloadLazy:(id)sender ;
+- (void)incrementLazyChild ;
+- (void)incrementLazyColumn ;
+- (void)incrementLazyNumber ;
+- (void)incrementLazyExpandable ;
 
 @end
 

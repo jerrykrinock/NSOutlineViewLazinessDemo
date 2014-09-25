@@ -1,6 +1,6 @@
 #import <Cocoa/Cocoa.h>
 #import "LazyDataSource.h"
-#import "ActualItem.h"
+#import "ModelItem.h"
 #import "DemoParameters.h"
 #import "AppDelegate.h"
 
@@ -9,23 +9,20 @@
 @property (retain) ProxyItem* parent ;
 @property (assign) NSInteger index ;
 
-- (ActualItem*)actualItem ;
+- (ModelItem*)modelItem ;
 
 @end
 
 
 @implementation ProxyItem
 
-- (ActualItem*)actualItem {
+- (ModelItem*)modelItem {
     ProxyItem* proxyParent = [self parent] ;
     
-    ActualItem* parent = [proxyParent actualItem] ;
+    ModelItem* parent = [proxyParent modelItem] ;
     NSInteger index = [self index] ;
-    
-    // Dramatize the delay
-    usleep(CHILD_FETCH_MICROSECONDS) ;
-    
-    return [ActualItem actualItemWithParent:parent
+        
+    return [ModelItem modelItemWithParent:parent
                                     atIndex:index] ;
 }
 
@@ -42,8 +39,8 @@
 @implementation LazyDataSource
 
 
-- (ActualItem*)actualItemFromProxy:(ProxyItem*)proxy {
-    return [proxy actualItem] ;
+- (ModelItem*)modelItemFromProxy:(ProxyItem*)proxy {
+    return [proxy modelItem] ;
 }
 
 
@@ -57,12 +54,14 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView
   numberOfChildrenOfItem:(id)proxy {
+    [(AppDelegate*)[NSApp delegate] incrementLazyNumber] ;
+    
     NSInteger numberOfChildren ;
     if (!proxy) {
         numberOfChildren = 1 ;
     }
     else {
-        ActualItem* item = [self actualItemFromProxy:proxy] ;
+        ModelItem* item = [self modelItemFromProxy:proxy] ;
         numberOfChildren = [item numberOfChildren] ;
     }
     
@@ -71,12 +70,14 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    isItemExpandable:(id)proxy {
+    [(AppDelegate*)[NSApp delegate] incrementLazyExpandable] ;
+    
     BOOL isItemExpandable ;
     if (!proxy) {
         isItemExpandable = YES ;
     }
     else {
-        ActualItem* item = [self actualItemFromProxy:proxy] ;
+        ModelItem* item = [self modelItemFromProxy:proxy] ;
         isItemExpandable = ([item numberOfChildren] > 0) ;
     }
     
@@ -86,17 +87,12 @@
 - (id)outlineView:(NSOutlineView *)outlineView
             child:(NSInteger)index
            ofItem:(id)parent {
+    [(AppDelegate*)[NSApp delegate] incrementLazyChild] ;
+    
     ProxyItem* proxy = [[ProxyItem alloc] init] ;
     [proxy setParent:parent] ;
     [proxy setIndex:index] ;
     [self retainProxy:proxy] ;
-    
-    [(AppDelegate*)[NSApp delegate] incrementLazyChildRequests] ;
-    
-    if (DO_LOG_CHILD_REQUESTS) {
-        NSLog(@"Child %04ld requested",
-              (long)index) ;
-    }
     
     return proxy ;
 }
@@ -104,10 +100,9 @@
 - (id)         outlineView:(NSOutlineView *)outlineView
  objectValueForTableColumn:(NSTableColumn *)tableColumn
                     byItem:(id)proxy {
-    ActualItem* item = [self actualItemFromProxy:proxy] ;
-    
-    [(AppDelegate*)[NSApp delegate] incrementLazyColumnRequests] ;
-    
+    [(AppDelegate*)[NSApp delegate] incrementLazyColumn] ;
+
+    ModelItem* item = [self modelItemFromProxy:proxy] ;
     return [item name] ;
 }
 

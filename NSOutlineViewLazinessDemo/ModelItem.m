@@ -1,12 +1,12 @@
-#import "ActualItem.h"
+#import "ModelItem.h"
 #import "DemoParameters.h"
 
 
-@implementation ActualItem
+@implementation ModelItem
 
-+ (ActualItem*)actualItemWithParent:(ActualItem*)parent
++ (ModelItem*)modelItemWithParent:(ModelItem*)parent
                             atIndex:(NSInteger)index {
-    ActualItem* item = [[self alloc] init] ;
+    ModelItem* item = [[self alloc] init] ;
     NSString* name ;
     NSInteger numberOfChildren ;
     if (!parent) {
@@ -15,7 +15,7 @@
     }
     else if ([[parent name] isEqualToString:@"Mother"]) {
         name = [[NSString alloc] initWithFormat:
-                @"Child %04ld",
+                @"Child %05ld",
                 (long)index] ;
         numberOfChildren = 0 ;
     }
@@ -27,6 +27,10 @@
     [item setName:name] ;
     [item setNumberOfChildren:numberOfChildren] ;
     
+    /* Dramatize the delay that it might take to retrieve, construct or
+     fetch an actual model item in a real project. */
+    usleep(SIMULATE_MODEL_FETCH_MICROSECONDS) ;
+
     return item ;
 }
 
