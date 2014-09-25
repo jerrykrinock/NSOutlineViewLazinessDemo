@@ -113,7 +113,6 @@ static NSInteger countColumnRequests = 0 ;
 
     countColumnRequests++ ;
     
-    /*SSYDBL*/ NSLog(@"%@ = %@", [tableColumn identifier], object) ;
     return object ;
 }
 
