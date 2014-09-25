@@ -1,7 +1,11 @@
 #import <Foundation/Foundation.h>
+#import "SSYReloadSquawkOutlineView.h"
 
-@interface LazyDataSource : NSObject {
-    NSMutableSet* _proxies ;
+@interface LazyDataSource : NSObject <SSYCleanOnReloadDataSource> {
+    NSMutableArray* _proxies ;
+    NSInteger _deadItemCount ;
 }
+
+- (NSInteger)itemCount ;
 
 @end

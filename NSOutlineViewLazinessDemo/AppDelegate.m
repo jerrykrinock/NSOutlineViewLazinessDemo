@@ -1,4 +1,6 @@
 #import "AppDelegate.h"
+#import "DumbDataSource.h"
+#import "LazyDataSource.h"
 
 
 @implementation AppDelegate
@@ -19,10 +21,12 @@
     [dumbColumnField setStringValue:[NSString stringWithFormat:@"%ld", (long)dumbColumnCount]] ;
     [dumbNumberField setStringValue:[NSString stringWithFormat:@"%ld", (long)dumbNumberCount]] ;
     [dumbExpandableField setStringValue:[NSString stringWithFormat:@"%ld", (long)dumbExpandableCount]] ;
+    [dumbItemCountField setStringValue:[NSString stringWithFormat:@"%ld", (long)[dumbDataSource itemCount]]] ;
     [lazyChildField setStringValue:[NSString stringWithFormat:@"%ld", (long)lazyChildCount]] ;
     [lazyColumnField setStringValue:[NSString stringWithFormat:@"%ld", (long)lazyColumnCount]] ;
     [lazyNumberField setStringValue:[NSString stringWithFormat:@"%ld", (long)lazyNumberCount]] ;
     [lazyExpandableField setStringValue:[NSString stringWithFormat:@"%ld", (long)lazyExpandableCount]] ;
+    [lazyItemCountField setStringValue:[NSString stringWithFormat:@"%ld", (long)[lazyDataSource itemCount]]] ;
 }
 
 - (IBAction)resetDumb:(id)sender {

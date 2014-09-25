@@ -1,5 +1,8 @@
 #import <Cocoa/Cocoa.h>
 
+@class DumbDataSource ;
+@class LazyDataSource ;
+
 @interface AppDelegate : NSObject <
 NSApplicationDelegate,
 NSOutlineViewDataSource> {
@@ -13,16 +16,20 @@ NSOutlineViewDataSource> {
     NSInteger lazyExpandableCount ;
     
     IBOutlet NSOutlineView* dumbOutlineView ;
+    IBOutlet DumbDataSource* dumbDataSource ;
     IBOutlet NSTextField* dumbChildField ;
     IBOutlet NSTextField* dumbColumnField ;
     IBOutlet NSTextField* dumbNumberField ;
     IBOutlet NSTextField* dumbExpandableField ;
+    IBOutlet NSTextField* dumbItemCountField ;
 
     IBOutlet NSOutlineView* lazyOutlineView ;
+    IBOutlet LazyDataSource* lazyDataSource ;
     IBOutlet NSTextField* lazyChildField ;
     IBOutlet NSTextField* lazyColumnField ;
     IBOutlet NSTextField* lazyNumberField ;
     IBOutlet NSTextField* lazyExpandableField ;
+    IBOutlet NSTextField* lazyItemCountField ;
 }
 
 - (IBAction)resetDumb:(id)sender ;

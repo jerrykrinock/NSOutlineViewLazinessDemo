@@ -5,9 +5,13 @@
 
 @implementation DumbDataSource
 
+- (NSInteger)itemCount {
+    return [_modelItems count] ;
+}
+
 - (void)retainModelItem:(ModelItem*)modelItem {
     if (!_modelItems) {
-        _modelItems = [[NSMutableSet alloc] init] ;
+        _modelItems = [[NSMutableArray alloc] init] ;
     }
     
     [_modelItems addObject:modelItem] ;
@@ -61,6 +65,18 @@
     [(AppDelegate*)[NSApp delegate] incrementDumbColumn] ;
     
     return [item name] ;
+}
+
+#pragma mark * SSYCleanOnReloadDataSource Protocol Support
+
+- (void)prepareToReload {
+    _deadItemCount = [self itemCount] ;
+}
+
+- (void)recoverFromReload {
+    NSRange deadRange = NSMakeRange(0, _deadItemCount) ;
+    NSIndexSet* deadIndexSet = [NSIndexSet indexSetWithIndexesInRange:deadRange] ;
+    [_modelItems removeObjectsAtIndexes:deadIndexSet] ;
 }
 
 @end

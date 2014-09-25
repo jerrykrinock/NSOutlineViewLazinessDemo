@@ -14,6 +14,7 @@
 		486A66F119C8749B00C06C17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 486A66F019C8749B00C06C17 /* AppDelegate.m */; };
 		486A66F319C8749B00C06C17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 486A66F219C8749B00C06C17 /* Images.xcassets */; };
 		486A66F619C8749B00C06C17 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486A66F419C8749B00C06C17 /* MainMenu.xib */; };
+		48EF332319D4BC2600F11B62 /* SSYReloadSquawkOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EF332219D4BC2600F11B62 /* SSYReloadSquawkOutlineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,9 @@
 		486A66F019C8749B00C06C17 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		486A66F219C8749B00C06C17 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		486A66F519C8749B00C06C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		48EF332019D4B3D800F11B62 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		48EF332119D4BC2600F11B62 /* SSYReloadSquawkOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSYReloadSquawkOutlineView.h; sourceTree = "<group>"; };
+		48EF332219D4BC2600F11B62 /* SSYReloadSquawkOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSYReloadSquawkOutlineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			children = (
 				486A66EA19C8749B00C06C17 /* NSOutlineViewLazinessDemo */,
 				486A66E919C8749B00C06C17 /* Products */,
+				48EF332019D4B3D800F11B62 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +80,8 @@
 				48336FCB19D442B300618088 /* LazyDataSource.m */,
 				48336FD019D442DA00618088 /* ModelItem.h */,
 				48336FD119D442DA00618088 /* ModelItem.m */,
+				48EF332119D4BC2600F11B62 /* SSYReloadSquawkOutlineView.h */,
+				48EF332219D4BC2600F11B62 /* SSYReloadSquawkOutlineView.m */,
 			);
 			path = NSOutlineViewLazinessDemo;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48EF332319D4BC2600F11B62 /* SSYReloadSquawkOutlineView.m in Sources */,
 				48336FD219D442DA00618088 /* ModelItem.m in Sources */,
 				486A66F119C8749B00C06C17 /* AppDelegate.m in Sources */,
 				486A66EE19C8749B00C06C17 /* main.m in Sources */,

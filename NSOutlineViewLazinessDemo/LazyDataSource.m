@@ -38,15 +38,27 @@
 
 @implementation LazyDataSource
 
+- (NSInteger)itemCount {
+    return [_proxies count] ;
+}
+
+- (void)prepareToReload {
+    _deadItemCount = [self itemCount] ;
+}
+
+- (void)recoverFromReload {
+    NSRange deadRange = NSMakeRange(0, _deadItemCount) ;
+    NSIndexSet* deadIndexSet = [NSIndexSet indexSetWithIndexesInRange:deadRange] ;
+    [_proxies removeObjectsAtIndexes:deadIndexSet] ;
+}
 
 - (ModelItem*)modelItemFromProxy:(ProxyItem*)proxy {
     return [proxy modelItem] ;
 }
 
-
 - (void)retainProxy:(ProxyItem*)proxy {
     if (!_proxies) {
-        _proxies = [[NSMutableSet alloc] init] ;
+        _proxies = [[NSMutableArray alloc] init] ;
     }
     
     [_proxies addObject:proxy] ;

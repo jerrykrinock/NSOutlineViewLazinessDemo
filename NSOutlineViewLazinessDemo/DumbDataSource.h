@@ -1,7 +1,10 @@
 #import <Foundation/Foundation.h>
 
 @interface DumbDataSource : NSObject {
-    NSMutableSet* _modelItems ;
+    NSMutableArray* _modelItems ;
+    NSInteger _deadItemCount ;
 }
+
+- (NSInteger)itemCount ;
 
 @end
