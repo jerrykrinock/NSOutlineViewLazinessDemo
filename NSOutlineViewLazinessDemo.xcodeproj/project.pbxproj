@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48336FCC19D442B300618088 /* LazyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 48336FCB19D442B300618088 /* LazyDataSource.m */; };
+		48336FCF19D442C700618088 /* DumbDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 48336FCE19D442C700618088 /* DumbDataSource.m */; };
+		48336FD219D442DA00618088 /* ActualItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 48336FD119D442DA00618088 /* ActualItem.m */; };
 		486A66EE19C8749B00C06C17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 486A66ED19C8749B00C06C17 /* main.m */; };
 		486A66F119C8749B00C06C17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 486A66F019C8749B00C06C17 /* AppDelegate.m */; };
 		486A66F319C8749B00C06C17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 486A66F219C8749B00C06C17 /* Images.xcassets */; };
@@ -14,6 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48336FCA19D442B300618088 /* LazyDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LazyDataSource.h; sourceTree = "<group>"; };
+		48336FCB19D442B300618088 /* LazyDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LazyDataSource.m; sourceTree = "<group>"; };
+		48336FCD19D442C700618088 /* DumbDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumbDataSource.h; sourceTree = "<group>"; };
+		48336FCE19D442C700618088 /* DumbDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumbDataSource.m; sourceTree = "<group>"; };
+		48336FD019D442DA00618088 /* ActualItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActualItem.h; sourceTree = "<group>"; };
+		48336FD119D442DA00618088 /* ActualItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActualItem.m; sourceTree = "<group>"; };
+		48336FD319D444BC00618088 /* DemoParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoParameters.h; sourceTree = "<group>"; };
 		486A66E819C8749B00C06C17 /* NSOutlineViewLazinessDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSOutlineViewLazinessDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		486A66EC19C8749B00C06C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		486A66ED19C8749B00C06C17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -53,11 +63,18 @@
 		486A66EA19C8749B00C06C17 /* NSOutlineViewLazinessDemo */ = {
 			isa = PBXGroup;
 			children = (
-				486A66EF19C8749B00C06C17 /* AppDelegate.h */,
-				486A66F019C8749B00C06C17 /* AppDelegate.m */,
+				486A66EB19C8749B00C06C17 /* Supporting Files */,
 				486A66F219C8749B00C06C17 /* Images.xcassets */,
 				486A66F419C8749B00C06C17 /* MainMenu.xib */,
-				486A66EB19C8749B00C06C17 /* Supporting Files */,
+				48336FD019D442DA00618088 /* ActualItem.h */,
+				48336FD119D442DA00618088 /* ActualItem.m */,
+				486A66EF19C8749B00C06C17 /* AppDelegate.h */,
+				486A66F019C8749B00C06C17 /* AppDelegate.m */,
+				48336FCD19D442C700618088 /* DumbDataSource.h */,
+				48336FCE19D442C700618088 /* DumbDataSource.m */,
+				48336FCA19D442B300618088 /* LazyDataSource.h */,
+				48336FCB19D442B300618088 /* LazyDataSource.m */,
+				48336FD319D444BC00618088 /* DemoParameters.h */,
 			);
 			path = NSOutlineViewLazinessDemo;
 			sourceTree = "<group>";
@@ -140,8 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48336FD219D442DA00618088 /* ActualItem.m in Sources */,
 				486A66F119C8749B00C06C17 /* AppDelegate.m in Sources */,
 				486A66EE19C8749B00C06C17 /* main.m in Sources */,
+				48336FCF19D442C700618088 /* DumbDataSource.m in Sources */,
+				48336FCC19D442B300618088 /* LazyDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
