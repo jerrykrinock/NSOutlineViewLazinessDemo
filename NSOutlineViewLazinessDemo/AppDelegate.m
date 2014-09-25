@@ -6,7 +6,7 @@ static NSInteger countColumnRequests = 0 ;
 @implementation AppDelegate
 
 #define NUMBER_OF_ITEMS 18000
-#define CHILD_FETCH_MICROSECONDS 0
+#define CHILD_FETCH_MICROSECONDS 200
 #define DO_LOG_CHILD_REQUESTS NO
 
 - (IBAction)refresh:(id)sender {
