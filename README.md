@@ -14,11 +14,19 @@ Although the Lazy Data Source does fix the performance, it is quite a bit more c
 
 1.  Extra code in the data source (compare LazyDataSource.h/.m to DumbDataSource.h/.m), including the ProxyItem class.  In practice, your ProxyItem might also need to outline view as an instance variable.
 
-2.  The addition of SSYReloadSquawkOutlineView.m (or whatever mechanism you choose to use to get reload notifications)
+The remaining items are not shown in this demo:
 
-3.  Wherever you read items out of the outline view for any purpose, for example, to display in a detail view, you'll need to convert it from a proxy item to model item.
+2.  Some mechanism to prune out proxies when the represented model items are deleted.  In an early version of this demo, I was removing all proxies whenever the supported outline view executed a -reloadData.  You don't want to do that because it causes the entire outline view contents to be redrawn whenever an item is deleted.
+
+3.  Wherever you read items out of the outline view for any purpose, for example, to display in a detail view, or in -outlineView:shouldEditTableColumn:item:, you'll need to convert it from a proxy item to model item.
 
 4.  Probably override your outline view's -rowForItem:, because you're probably passing model items in to this method, but'super will only find its row if you pass it the corresponding proxy item.  I've done this by iterating through the proxies and finding the one with the given model item.  One hopes you don't need to do this very often.
+
+5.  In delegate methods such as outlineView:itemDidExpand:
+
+6.  When you invoke expandItem:
+
+7.  In -dataCellForRow:, assuming that this computation.depends on item.
 
 Items 3 and 4 are not shown in this demo.
 

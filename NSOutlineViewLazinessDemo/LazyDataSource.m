@@ -38,30 +38,42 @@
 
 @implementation LazyDataSource
 
+// This method is for the demo only.  You won't need it in typical usage.
+-(void)countNodesInObject:(id)object
+                  count_p:(NSInteger*)count_p
+                   parent:(id)parent {
+    
+    if([object isKindOfClass:[NSDictionary class]]){
+        
+        for(NSString * key in [object allKeys]){
+            id child = [object objectForKey:key];
+            [self countNodesInObject:child
+                             count_p:count_p
+                              parent:object] ;
+        }
+        
+        
+    }
+    else {
+        (*count_p)++ ;
+    }
+}
+
+
+// This method is for the demo only.  You won't need it in typical usage.
 - (NSInteger)itemCount {
-    return [_proxies count] ;
+    NSInteger count = 0 ;
+    [self countNodesInObject:_proxies
+                     count_p:&count
+                      parent:nil] ;
+    return count ;
 }
 
 - (void)prepareToReload {
-    _deadItemCount = [self itemCount] ;
-}
-
-- (void)recoverFromReload {
-    NSRange deadRange = NSMakeRange(0, _deadItemCount) ;
-    NSIndexSet* deadIndexSet = [NSIndexSet indexSetWithIndexesInRange:deadRange] ;
-    [_proxies removeObjectsAtIndexes:deadIndexSet] ;
 }
 
 - (ModelItem*)modelItemFromProxy:(ProxyItem*)proxy {
     return [proxy modelItem] ;
-}
-
-- (void)retainProxy:(ProxyItem*)proxy {
-    if (!_proxies) {
-        _proxies = [[NSMutableArray alloc] init] ;
-    }
-    
-    [_proxies addObject:proxy] ;
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView
@@ -101,10 +113,29 @@
            ofItem:(id)parent {
     [(AppDelegate*)[NSApp delegate] incrementLazyChild] ;
     
-    ProxyItem* proxy = [[ProxyItem alloc] init] ;
-    [proxy setParent:parent] ;
-    [proxy setIndex:index] ;
-    [self retainProxy:proxy] ;
+    NSValue* parentValue = [NSValue valueWithPointer:(__bridge const void *)(parent)] ;
+    NSNumber* indexValue = [NSNumber numberWithInteger:index] ;
+    ProxyItem* proxy = [[_proxies objectForKey:parentValue] objectForKey:indexValue] ;
+
+    if (!proxy) {
+        proxy = [[ProxyItem alloc] init] ;
+        
+        [proxy setParent:parent] ;
+        [proxy setIndex:index] ;
+        
+        if (!_proxies) {
+            _proxies = [[NSMutableDictionary alloc] init] ;
+        }
+        
+        NSMutableDictionary* parentDic = [_proxies objectForKey:parentValue] ;
+        if (!parentDic) {
+            parentDic = [[NSMutableDictionary alloc] init] ;
+            [_proxies setObject:parentDic
+                                forKey:parentValue] ;
+        }
+        [parentDic setObject:proxy
+                      forKey:indexValue] ;
+    }
     
     return proxy ;
 }
